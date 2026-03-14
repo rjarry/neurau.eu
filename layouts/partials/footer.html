@@ -1,0 +1,30 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>{{ .Site.Title }}</h3>
+        <p>{{ .Site.Params.description }}</p>
+      </div>
+      <div class="footer-col">
+        <h3>Navigation</h3>
+        <ul>
+          {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        {{ with .Site.Params.contact.email }}<p><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+        <div class="social-links">
+          {{ with .Site.Params.social.facebook }}<a href="{{ . }}" rel="noopener">Facebook</a>{{ end }}
+          {{ with .Site.Params.social.instagram }}<a href="{{ . }}" rel="noopener">Instagram</a>{{ end }}
+          {{ with .Site.Params.social.linkedin }}<a href="{{ . }}" rel="noopener">LinkedIn</a>{{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ now.Year }} {{ .Site.Title }}. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>

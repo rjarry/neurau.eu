@@ -1,0 +1,28 @@
+baseURL = "https://neurau.eu/"
+languageCode = "fr"
+defaultContentLanguage = "fr"
+title = "Neurau"
+enableRobotsTXT = true
+[pagination]
+  pagerSize = 9
+summarylength = 40
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5

@@ -1,0 +1,51 @@
+{{ define "main" }}
+<article class="section">
+  <div class="container container-narrow">
+    <header class="article-header">
+      <h1>{{ .Title }}</h1>
+      {{ if .Date }}
+        <time class="article-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      {{ end }}
+      {{ with .Params.categories }}
+        <div class="article-categories">
+          {{ range . }}<a href="{{ "categories/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
+    </header>
+
+    <div class="article-content">
+      {{ .Content }}
+    </div>
+
+    {{ if .Params.tags }}
+      <footer class="article-footer">
+        <div class="article-tags">
+          <span>Tags :</span>
+          {{ range .Params.tags }}
+            <a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
+          {{ end }}
+        </div>
+      </footer>
+    {{ end }}
+
+    {{ if eq .Section "blog" }}
+      {{ partial "comments.html" . }}
+    {{ end }}
+
+    {{/* Breadcrumb for knowledge base articles */}}
+    {{ if eq .Section "connaissances" }}
+      <nav class="kb-breadcrumb">
+        <a href="/connaissances/">Connaissances</a>
+        {{ range .Ancestors.Reverse }}
+          {{ if ne .Kind "home" }}
+            {{ if ne .RelPermalink "/connaissances/" }}
+              <span class="separator">/</span>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      </nav>
+    {{ end }}
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,6 @@
+# Redirect alias domains to primary domain
+https://neurau.fr/* https://neurau.eu/:splat 301!
+https://neurau.net/* https://neurau.eu/:splat 301!
+https://www.neurau.fr/* https://neurau.eu/:splat 301!
+https://www.neurau.net/* https://neurau.eu/:splat 301!
+https://www.neurau.eu/* https://neurau.eu/:splat 301!

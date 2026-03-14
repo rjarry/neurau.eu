@@ -1,0 +1,45 @@
+.comments {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.comments h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-lg);
+}
+
+#isso-thread .isso-comment {
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+#isso-thread .isso-comment .isso-text-wrapper p {
+  color: var(--color-text);
+  line-height: var(--line-height-body);
+}
+
+#isso-thread .isso-postbox .isso-textarea {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  padding: var(--space-sm);
+}
+
+#isso-thread .isso-postbox .isso-post-action input[type="submit"] {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+}
+
+#isso-thread .isso-postbox .isso-post-action input[type="submit"]:hover {
+  background: var(--color-primary-dark);
+}

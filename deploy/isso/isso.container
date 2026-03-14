@@ -1,0 +1,12 @@
+[Container]
+Image=ghcr.io/isso-comments/isso:latest
+AutoUpdate=registry
+PublishPort=127.0.0.1:8080:8080
+Volume=/srv/isso/config:/config:ro
+Volume=/srv/isso/db:/db
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,57 @@
+:root {
+  /* Colors */
+  --color-primary: #2d5a7b;
+  --color-primary-dark: #1e3f56;
+  --color-primary-light: #4a7fa0;
+  --color-accent: #c4956a;
+  --color-accent-dark: #a87a52;
+
+  --color-bg: #fafafa;
+  --color-bg-alt: #f0f0f0;
+  --color-surface: #ffffff;
+  --color-text: #2c2c2c;
+  --color-text-secondary: #6b6b6b;
+  --color-text-muted: #999999;
+  --color-border: #e0e0e0;
+
+  /* Typography */
+  --font-heading: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Source Serif 4', 'Georgia', serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+
+  --text-base: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3.5rem;
+
+  --line-height: 1.7;
+  --line-height-heading: 1.2;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+
+  /* Layout */
+  --container-width: 1200px;
+  --container-narrow: 800px;
+
+  /* Transitions */
+  --transition: 0.3s ease;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}

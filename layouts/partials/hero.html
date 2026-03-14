@@ -1,0 +1,12 @@
+<section class="hero" {{ with .Params.heroImage }}style="background-image: url('{{ . }}')"{{ else }}{{ with .Site.Params.heroImage }}style="background-image: url('{{ . }}')"{{ end }}{{ end }}>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>{{ with .Params.heroTitle }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</h1>
+    {{ with .Params.heroSubtitle }}<p class="hero-subtitle">{{ . }}</p>{{ end }}
+    {{ with .Params.heroText }}<p class="hero-text">{{ . }}</p>{{ end }}
+    <div class="hero-actions">
+      <a href="/blog/" class="btn btn-primary">Lire le blog</a>
+      <a href="/connaissances/" class="btn btn-secondary">Explorer les connaissances</a>
+    </div>
+  </div>
+</section>

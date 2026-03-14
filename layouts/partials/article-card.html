@@ -1,0 +1,12 @@
+<article class="card">
+  <div class="card-body">
+    <h2 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ if .Date }}<time class="card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ end }}
+    {{ with .Description }}<p class="card-desc">{{ . }}</p>{{ end }}
+    {{ with .Params.categories }}
+      <div class="card-tags">
+        {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+      </div>
+    {{ end }}
+  </div>
+</article>

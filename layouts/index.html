@@ -1,0 +1,38 @@
+{{ define "main" }}
+{{ partial "hero.html" . }}
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Derniers articles</h2>
+    <div class="card-grid">
+      {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
+        {{ partial "article-card.html" . }}
+      {{ end }}
+    </div>
+    <div class="section-cta">
+      <a href="/blog/" class="btn btn-secondary">Tous les articles</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Base de connaissances</h2>
+    <p class="section-desc">Explorez nos ressources organisées par thématique pour approfondir vos connaissances en psychologie moderne.</p>
+    <div class="card-grid">
+      {{ $kb := .Site.GetPage "/connaissances" }}{{ with $kb }}{{ range .Sections }}
+        <article class="card">
+          <div class="card-body">
+            <h2 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            {{ with .Description }}<p class="card-desc">{{ . }}</p>{{ end }}
+            <p class="card-count">{{ len .RegularPages }} article{{ if gt (len .RegularPages) 1 }}s{{ end }}</p>
+          </div>
+        </article>
+      {{ end }}{{ end }}
+    </div>
+    <div class="section-cta">
+      <a href="/connaissances/" class="btn btn-secondary">Toutes les catégories</a>
+    </div>
+  </div>
+</section>
+{{ end }}

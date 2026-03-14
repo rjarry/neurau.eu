@@ -1,0 +1,98 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: blog
+    label: Blog
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Titre, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Description, name: description, widget: text }
+      - label: Catégories
+        name: categories
+        widget: list
+        required: false
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+      - { label: Contenu, name: body, widget: markdown }
+
+  - name: connaissances
+    label: Base de connaissances
+    folder: content/connaissances
+    create: true
+    nested:
+      depth: 3
+    slug: "{{slug}}"
+    fields:
+      - { label: Titre, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - label: Ordre
+        name: weight
+        widget: number
+        required: false
+      - { label: Contenu, name: body, widget: markdown }
+    meta:
+      path:
+        widget: string
+        label: Path
+        index_file: _index
+
+  - name: pages
+    label: Pages
+    files:
+      - label: Accueil
+        name: home
+        file: content/_index.md
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: "Titre héro", name: heroTitle, widget: string }
+          - { label: "Sous-titre héro", name: heroSubtitle, widget: string }
+          - { label: "Texte héro", name: heroText, widget: text }
+          - { label: Contenu, name: body, widget: markdown, required: false }
+      - label: À propos
+        name: about
+        file: content/a-propos.md
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Contenu, name: body, widget: markdown }
+      - label: Contact
+        name: contact
+        file: content/contact.md
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Contenu, name: body, widget: markdown }
+
+  - name: settings
+    label: Paramètres
+    files:
+      - label: Paramètres du site
+        name: params
+        file: config/_default/params.toml
+        fields:
+          - { label: Description, name: description, widget: string }
+          - { label: Accroche, name: tagline, widget: string }
+          - { label: "Image héro", name: heroImage, widget: image }
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - { label: Email, name: email, widget: string }
+          - label: "Réseaux sociaux"
+            name: social
+            widget: object
+            fields:
+              - { label: Facebook, name: facebook, widget: string, required: false }
+              - { label: Instagram, name: instagram, widget: string, required: false }
+              - { label: LinkedIn, name: linkedin, widget: string, required: false }

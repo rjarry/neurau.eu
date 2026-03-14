@@ -1,0 +1,46 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="fr_FR">
+{{ if .IsPage }}
+{{ with .Date }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+{{ $variables := resources.Get "css/variables.css" }}
+{{ $main := resources.Get "css/main.css" }}
+{{ $dark := resources.Get "css/dark.css" }}
+{{ $header := resources.Get "css/components/header.css" }}
+{{ $hero := resources.Get "css/components/hero.css" }}
+{{ $cards := resources.Get "css/components/cards.css" }}
+{{ $footer := resources.Get "css/components/footer.css" }}
+{{ $forms := resources.Get "css/components/forms.css" }}
+{{ $kb := resources.Get "css/components/kb.css" }}
+{{ $comments := resources.Get "css/components/comments.css" }}
+
+{{ $styles := slice $variables $main $dark $header $hero $cards $footer $forms $kb $comments | resources.Concat "css/bundle.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+
+{{ range .AlternativeOutputFormats }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+{{ end }}
+
+{{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">{{ end }}
+
+<!-- GoatCounter -->
+{{ with .Site.Params.goatcounter }}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{{ end }}
