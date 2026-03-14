@@ -9,11 +9,60 @@
       var f = document.querySelector('.isso-textarea');
       if (!f) return;
       clearInterval(t);
+
       f.placeholder = 'Votre commentaire...';
       var a = document.getElementById('isso-postbox-author');
       if (a) a.placeholder = 'Votre nom (optionnel)';
       var e = document.getElementById('isso-postbox-email');
       if (e) e.placeholder = 'votre@email.com (optionnel)';
+
+      var submit = document.querySelector('.isso-post-action input[type="submit"]');
+      if (submit) submit.value = 'Poster';
+
+      var wrapper = document.querySelector('.isso-textarea-wrapper');
+      var previewBtn = document.querySelector('input[name="preview"]');
+      var editBtn = document.querySelector('input[name="edit"]');
+      if (!wrapper || !previewBtn || !editBtn) return;
+
+      /* save parent <p> refs before moving buttons */
+      var previewP = previewBtn.closest('.isso-post-action');
+      var editP = editBtn.closest('.isso-post-action');
+
+      /* build tab bar */
+      var bar = document.createElement('div');
+      bar.className = 'isso-toggle-bar';
+      editBtn.value = '\u00c9diter';
+      previewBtn.value = 'Aper\u00e7u';
+      bar.appendChild(editBtn);
+      bar.appendChild(previewBtn);
+      wrapper.parentElement.insertBefore(bar, wrapper);
+
+      /* remove empty <p> wrappers */
+      if (previewP) previewP.remove();
+      if (editP) editP.remove();
+
+      var previewDiv = wrapper.querySelector('.isso-preview');
+
+      previewBtn.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        previewBtn.dispatchEvent(new MouseEvent('mousedown'));
+        f.style.display = 'none';
+        previewDiv.style.display = 'block';
+        previewBtn.classList.add('active');
+        editBtn.classList.remove('active');
+      });
+
+      editBtn.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        f.style.display = '';
+        previewDiv.style.display = 'none';
+        editBtn.classList.add('active');
+        previewBtn.classList.remove('active');
+      });
+
+      editBtn.classList.add('active');
     }, 100);
   })();
   </script>

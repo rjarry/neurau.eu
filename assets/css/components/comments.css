@@ -35,9 +35,54 @@
   outline: none;
 }
 
-/* Hide the preview div when empty */
-#isso-thread .isso-textarea-wrapper .isso-preview:has(.isso-text:empty) {
+/* Preview is hidden by default, JS toggles it */
+#isso-thread .isso-textarea-wrapper .isso-preview {
   display: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  min-height: 120px;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+}
+
+/* Tab bar (Editer / Apercu) above textarea */
+#isso-thread .isso-toggle-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0;
+}
+
+#isso-thread .isso-toggle-bar input[type="button"] {
+  background: none;
+  border: 1px solid transparent;
+  border-bottom: none;
+  color: var(--color-text-secondary);
+  padding: var(--space-sm) var(--space-lg);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  margin-bottom: -1px;
+  transition: color var(--transition);
+}
+
+#isso-thread .isso-toggle-bar input[type="button"]:hover {
+  color: var(--color-text);
+}
+
+#isso-thread .isso-toggle-bar input[type="button"].active {
+  border-color: var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+#isso-thread .isso-textarea-wrapper .isso-textarea {
+  border-top-left-radius: 0;
 }
 
 /* Stack everything vertically */
