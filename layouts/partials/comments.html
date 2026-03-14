@@ -11,15 +11,9 @@
       clearInterval(t);
       f.placeholder = 'Votre commentaire...';
       var a = document.getElementById('isso-postbox-author');
-      if (a) {
-        a.placeholder = 'Votre nom (optionnel)';
-        a.parentElement.querySelector('label').textContent = 'Nom';
-      }
+      if (a) a.placeholder = 'Votre nom (optionnel)';
       var e = document.getElementById('isso-postbox-email');
-      if (e) {
-        e.placeholder = 'votre@email.com (optionnel, si vous voulez recevoir des notifications)';
-        e.parentElement.querySelector('label').textContent = 'Courriel';
-      }
+      if (e) e.placeholder = 'votre@email.com (optionnel)';
     }, 100);
   })();
   </script>

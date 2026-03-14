@@ -35,36 +35,29 @@
   outline: none;
 }
 
-/* Hide the empty preview div */
-#isso-thread .isso-textarea-wrapper .isso-preview .isso-text:empty {
+/* Hide the preview div when empty */
+#isso-thread .isso-textarea-wrapper .isso-preview:has(.isso-text:empty) {
   display: none;
 }
 
-/* Form fields (name, email) on the same line, hide website */
+/* Stack everything vertically */
 #isso-thread .isso-auth-section {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 #isso-thread .isso-auth-section .isso-input-wrapper {
-  flex: 1;
-  min-width: 200px;
   margin: 0;
 }
 
-/* Hide website field */
-#isso-thread .isso-auth-section .isso-input-wrapper:has(#isso-postbox-website) {
+/* Hide labels and website field */
+#isso-thread .isso-auth-section label {
   display: none;
 }
 
-#isso-thread .isso-auth-section label {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-xs);
+#isso-thread .isso-auth-section .isso-input-wrapper:has(#isso-postbox-website) {
+  display: none;
 }
 
 #isso-thread .isso-auth-section input[type="text"],
@@ -87,7 +80,7 @@
   outline: none;
 }
 
-/* Buttons on one line */
+/* Buttons */
 #isso-thread .isso-post-action {
   margin: 0;
 }
@@ -102,6 +95,7 @@
   font-family: var(--font-heading);
   font-size: var(--text-sm);
   transition: background var(--transition);
+  width: 100%;
 }
 
 #isso-thread .isso-post-action input[type="submit"]:hover {
@@ -118,6 +112,7 @@
   font-family: var(--font-heading);
   font-size: var(--text-sm);
   transition: border-color var(--transition);
+  width: 100%;
 }
 
 #isso-thread .isso-post-action input[type="button"]:hover {
@@ -162,10 +157,4 @@
   font-weight: normal;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-lg);
-}
-
-@media (max-width: 768px) {
-  #isso-thread .isso-auth-section {
-    flex-direction: column;
-  }
 }
