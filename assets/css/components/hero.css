@@ -5,20 +5,20 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-hero-bg);
   margin-top: -64px;
   overflow: hidden;
 }
 
 .hero-bg-logo {
   position: absolute;
-  width: 60%;
-  max-width: 500px;
+  width: 90%;
+  max-width: 700px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.15;
-  filter: blur(4px);
+  opacity: 0.4;
+  filter: blur(8px);
   pointer-events: none;
 }
 

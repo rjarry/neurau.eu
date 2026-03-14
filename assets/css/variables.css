@@ -1,18 +1,19 @@
 :root {
   /* Colors */
-  --color-primary: #2d5a7b;
-  --color-primary-dark: #1e3f56;
-  --color-primary-light: #4a7fa0;
+  --color-primary: #d25f50;
+  --color-primary-dark: #b2463a;
+  --color-primary-light: #e68c80;
   --color-accent: #c4956a;
   --color-accent-dark: #a87a52;
 
-  --color-bg: #fafafa;
-  --color-bg-alt: #f0f0f0;
+  --color-bg: #faf7f5;
+  --color-bg-alt: #f0edeb;
   --color-surface: #ffffff;
-  --color-text: #2c2c2c;
-  --color-text-secondary: #6b6b6b;
+  --color-text: #413c3a;
+  --color-text-secondary: #6b6562;
   --color-text-muted: #999999;
   --color-border: #e0e0e0;
+  --color-hero-bg: #373230;
 
   /* Typography */
   --font-heading: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
