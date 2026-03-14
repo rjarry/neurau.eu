@@ -1,7 +1,6 @@
 description = "Communauté francophone de psychologie moderne"
 tagline = "Explorer, comprendre, partager"
 heroImage = "/images/hero/default.jpg"
-goatcounter = "neurau"
 isso = "https://comments.neurau.eu/"
 
 [contact]
