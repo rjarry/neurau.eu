@@ -1,7 +1,7 @@
 {{ with .Site.Params.isso }}
 <section class="comments">
   <h2>Commentaires</h2>
-  <script data-isso="{{ . }}" data-isso-lang="fr" src="{{ . }}js/embed.min.js"></script>
+  <script data-isso="{{ . }}" data-isso-lang="fr" data-isso-input-website="false" src="{{ . }}js/embed.min.js"></script>
   <div id="isso-thread"></div>
 </section>
 {{ end }}
