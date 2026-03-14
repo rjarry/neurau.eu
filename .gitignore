@@ -2,3 +2,5 @@
 /resources/
 /.hugo_build.lock
 /deploy/isso/secrets.cfg
+/deploy/cms/neurau-cms
+/deploy/cms/env

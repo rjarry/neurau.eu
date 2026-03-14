@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: rjarry/neurau.eu
   branch: main
+  base_url: https://neurau.eu
+  auth_endpoint: /oauth/auth
 
 media_folder: static/images
 public_folder: /images
