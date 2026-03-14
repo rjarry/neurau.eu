@@ -1,8 +1,8 @@
 # neurau.eu
 
 Site web de la communauté francophone Neurau (psychologie moderne).
-Généré avec Hugo, éditable via Decap CMS, hébergé sur Netlify.
-Commentaires via Isso sur VPS.
+Généré avec Hugo, éditable via Decap CMS, hébergé sur VPS.
+Commentaires via Isso.
 
 ## Développement local
 
@@ -16,6 +16,10 @@ Pour générer le site statique :
 
     make build
 
+Pour compiler le service CMS (OAuth + webhook) :
+
+    make cms
+
 ## Structure
 
     content/          Contenu Markdown (blog, connaissances, pages)
@@ -25,80 +29,79 @@ Pour générer le site statique :
     static/admin/     Interface Decap CMS
     static/images/    Images du site
     config/_default/  Configuration Hugo
-    netlify.toml      Configuration Netlify (build, version Hugo)
-    deploy/isso/      Déploiement Isso sur VPS (commentaires)
+    deploy/cms/       Service OAuth + webhook (Go)
+    deploy/isso/      Déploiement Isso (commentaires)
     GNUmakefile       Commandes communes
 
-## Déploiement sur Netlify
+## Déploiement sur VPS
 
-### 1. Créer le site
+### 1. DNS
 
-- Créer un compte sur https://app.netlify.com/
-- "Add new site" > "Import an existing project" > connecter le repo
-  GitHub `rjarry/neurau.eu`
-- Netlify détecte automatiquement `netlify.toml` et configure le build
+Chez le registrar, ajouter les enregistrements `A` (et `AAAA` si
+IPv6) pointant `neurau.eu` et `comments.neurau.eu` vers l'IP du VPS.
 
-### 2. Configurer le domaine
+### 2. GitHub OAuth App
 
-- Dans Site settings > Domain management > ajouter `neurau.eu`
-- Chez le registrar DNS, créer un enregistrement :
-  `CNAME neurau.eu -> <sous-domaine>.netlify.app`
-- Netlify provisionne automatiquement le certificat TLS via Let's Encrypt
+Créer une OAuth App dans GitHub (Settings > Developer settings >
+OAuth Apps) :
 
-### 3. Activer Netlify Identity (pour Decap CMS)
+- Application name : Neurau CMS
+- Homepage URL : https://neurau.eu
+- Authorization callback URL : https://neurau.eu/oauth/callback
 
-- Site settings > Identity > Enable Identity
-- Identity > Registration > Invite only
-- Identity > Services > Git Gateway > Enable Git Gateway
-- Inviter les éditeurs par email depuis l'onglet Identity
+Noter le Client ID et le Client Secret.
 
-Les éditeurs invités pourront se connecter sur https://neurau.eu/admin/
-et modifier le contenu directement depuis le navigateur.
+### 3. GitHub Webhook
+
+Dans le repo GitHub (Settings > Webhooks), ajouter un webhook :
+
+- Payload URL : https://neurau.eu/webhook
+- Content type : application/json
+- Secret : choisir un secret aléatoire
+- Events : Just the push event
+
+### 4. Installation
+
+Cloner le repo sur le VPS dans `/var/www/neurau.eu` puis créer le
+fichier de secrets :
+
+    cp deploy/cms/env.example deploy/cms/env
+    # éditer deploy/cms/env avec les vrais secrets GitHub
+    # éditer deploy/isso/secrets.cfg avec le mot de passe SMTP
+
+Lancer l'installation complète :
+
+    sudo make deploy
+
+### Targets disponibles
+
+    make build            # générer le site statique
+    make serve            # serveur de développement local
+    make cms              # compiler le service CMS
+    make clean            # nettoyer les fichiers générés
+    sudo make deploy      # installation complète sur VPS
+    sudo make deploy-isso # (re)configurer le conteneur Isso
+    sudo make deploy-cms  # (re)installer le service CMS
+    sudo make deploy-nginx   # (re)configurer nginx
+    sudo make deploy-certbot # (re)configurer certbot
 
 ## Decap CMS
 
 L'interface d'édition est accessible sur https://neurau.eu/admin/
 
-L'authentification passe par Netlify Identity. Seuls les utilisateurs
-invités peuvent se connecter et éditer le contenu. Chaque modification
-crée un commit dans le repo GitHub, ce qui déclenche automatiquement
-un rebuild du site.
+L'authentification passe par GitHub OAuth. Seuls les utilisateurs
+avec accès au repo peuvent se connecter et éditer le contenu. Chaque
+modification crée un commit dans le repo GitHub, ce qui déclenche
+le webhook et un rebuild automatique du site sur le VPS.
 
 ## Commentaires (Isso)
 
-Les commentaires sont activés sur les articles de blog. Isso tourne sur
-le VPS dans un conteneur Podman, derrière nginx en reverse proxy sur
-`comments.neurau.eu`.
-
-### 1. DNS
-
-Chez le registrar, ajouter un enregistrement `A` (et `AAAA` si IPv6)
-pointant `comments.neurau.eu` vers l'IP du VPS.
-
-### 2. Installation sur le VPS
-
-Cloner le repo sur le VPS puis lancer l'installation :
-
-    sudo make vps-install
-
-Cela installe tout : le conteneur Isso (Podman/Quadlet), nginx en
-reverse proxy, certbot pour le certificat TLS, et les mises à jour
-automatiques du conteneur et du certificat.
-
-Tous les fichiers de configuration dans `/etc` et `/srv` sont des
-liens symboliques vers le repo. Pour appliquer une modification,
-il suffit de `git pull` puis `sudo make vps-nginx` ou
-`sudo make vps-isso` selon ce qui a changé.
+Les commentaires sont activés sur les articles de blog. Isso tourne
+sur le VPS dans un conteneur Podman, derrière nginx en reverse proxy
+sur `comments.neurau.eu`.
 
 Adapter les paramètres SMTP dans `deploy/isso/isso.cfg` pour la
 notification des nouveaux commentaires par email.
-
-### Targets disponibles
-
-    sudo make vps-install   # installation complète
-    sudo make vps-isso      # (re)configurer le conteneur Isso
-    sudo make vps-nginx     # (re)configurer nginx
-    sudo make vps-certbot   # (re)configurer certbot + certificat TLS
 
 ### Sécurité
 
