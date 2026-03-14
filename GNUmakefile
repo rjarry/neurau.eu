@@ -22,8 +22,8 @@ deploy/isso/secrets.cfg:
 
 envsubst := envsubst '$(addprefix $$SMTP_,HOST PORT TO FROM USERNAME PASSWORD)'
 
-.PHONY: vps-isso
-vps-isso: deploy/isso/secrets.cfg
+.PHONY: isso
+isso: deploy/isso/secrets.cfg
 	id isso >/dev/null 2>&1 || useradd -r -s /usr/sbin/nologin -d /srv/isso -m isso
 	grep -q isso /etc/subuid || usermod --add-subuids 100000-165535 --add-subgids 100000-165535 isso
 	loginctl enable-linger isso
@@ -35,15 +35,15 @@ vps-isso: deploy/isso/secrets.cfg
 	systemctl start isso
 	systemctl enable --now podman-auto-update.timer
 
-.PHONY: vps-nginx
-vps-nginx:
+.PHONY: nginx
+nginx:
 	ln -sfr deploy/isso/nginx.conf /etc/nginx/sites-available/comments.neurau.eu
 	ln -sfr /etc/nginx/sites-available/comments.neurau.eu /etc/nginx/sites-enabled/
 	nginx -t
 	systemctl reload nginx
 
-.PHONY: vps-certbot
-vps-certbot:
+.PHONY: certbot
+certbot:
 	apt-get install -y certbot
 	mkdir -p /var/www/acme
 	@if [ ! -d /etc/letsencrypt/live/comments.neurau.eu ]; then \
