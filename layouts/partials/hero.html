@@ -1,4 +1,5 @@
-<section class="hero" {{ with .Params.heroImage }}style="background-image: url('{{ . }}')"{{ else }}{{ with .Site.Params.heroImage }}style="background-image: url('{{ . }}')"{{ end }}{{ end }}>
+<section class="hero">
+  <img src="/favicon.svg" alt="" class="hero-bg-logo">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>{{ with .Params.heroTitle }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</h1>
