@@ -1,7 +1,27 @@
 {{ with .Site.Params.isso }}
 <section class="comments">
   <h2>Commentaires</h2>
-  <script data-isso="{{ . }}" data-isso-lang="fr" data-isso-input-website="false" src="{{ . }}js/embed.min.js"></script>
+  <script data-isso="{{ . }}" data-isso-lang="fr" src="{{ . }}js/embed.min.js"></script>
   <div id="isso-thread"></div>
+  <script>
+  (function() {
+    var t = setInterval(function() {
+      var f = document.querySelector('.isso-textarea');
+      if (!f) return;
+      clearInterval(t);
+      f.placeholder = 'Votre commentaire...';
+      var a = document.getElementById('isso-postbox-author');
+      if (a) {
+        a.placeholder = 'Votre nom (optionnel)';
+        a.parentElement.querySelector('label').textContent = 'Nom';
+      }
+      var e = document.getElementById('isso-postbox-email');
+      if (e) {
+        e.placeholder = 'votre@email.com (optionnel, si vous voulez recevoir des notifications)';
+        e.parentElement.querySelector('label').textContent = 'Courriel';
+      }
+    }, 100);
+  })();
+  </script>
 </section>
 {{ end }}
