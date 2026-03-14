@@ -18,8 +18,10 @@ vps-install: vps-isso vps-nginx vps-certbot
 
 .PHONY: vps-isso
 vps-isso:
+	id isso >/dev/null 2>&1 || useradd -r -s /usr/sbin/nologin -d /srv/isso isso
 	@mkdir -vp /srv/isso/config /srv/isso/db
-	@ln -vsfr deploy/isso/isso.cfg /srv/isso/config/isso.cfg
+	chown -R isso:isso /srv/isso/db
+	cp -v deploy/isso/isso.cfg /srv/isso/config/isso.cfg
 	@ln -vsfr deploy/isso/isso.container /etc/containers/systemd/isso.container
 	systemctl daemon-reload
 	systemctl start isso
