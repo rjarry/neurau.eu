@@ -1,6 +1,8 @@
 <header class="site-header">
   <div class="container">
-    <a href="{{ .Site.BaseURL }}" class="site-logo">{{ .Site.Title }}</a>
+    <a href="{{ .Site.BaseURL }}" class="site-logo">
+      <img src="/favicon.svg" alt="" class="site-logo-icon">{{ .Site.Title }}
+    </a>
     <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
       <span class="hamburger"></span>
     </button>
