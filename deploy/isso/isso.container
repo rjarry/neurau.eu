@@ -1,6 +1,8 @@
 [Container]
 Image=ghcr.io/isso-comments/isso:release
 AutoUpdate=registry
+ContainerName=isso
+PodmanArgs=--cidfile=/run/isso/isso.cid
 PublishPort=127.0.0.1:8080:8080
 Volume=/srv/isso/config:/config:ro
 Volume=/srv/isso/db:/db
@@ -8,6 +10,7 @@ Volume=/srv/isso/db:/db
 [Service]
 User=isso
 Group=isso
+RuntimeDirectory=isso
 Restart=always
 
 [Install]
