@@ -11,6 +11,8 @@ Volume=/srv/isso/db:/db
 User=isso
 Group=isso
 RuntimeDirectory=isso
+StandardError=journal
+LogLevelMax=info
 Restart=always
 
 [Install]
