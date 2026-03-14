@@ -4,8 +4,8 @@
   .heart { fill: rgba(208, 84, 84, 0.5); }
   .strokes { fill: rgba(255, 255, 255, 0.3); }
   @media (prefers-color-scheme: dark) {
-    .heart { fill: rgba(208, 84, 84, 0.4); }
-    .strokes { fill: rgba(5, 5, 5, 0.2); }
+    .heart { fill: rgba(208, 84, 84, 0.7); }
+    .strokes { fill: rgba(5, 5, 5, 0.5); }
   }
  </style>
  <path class="heart" d="m274 128c-30.4-28.2-81.6-0.44-69.3 41.1 5.77 19.4 28.9 35.4 42.8 49.3 5.65 5.65 11.6 13.8 19.2 17 12.4 5.23 20.1-9.22 28-17.1 16.4-13.1 28.4-27 40.9-43.6 29-38.3-30.4-84-61.5-46.7"/>
