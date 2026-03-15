@@ -41,7 +41,6 @@ deploy-isso: deploy/isso/secrets.cfg
 	chown -R isso:isso /srv/isso
 	ln -sfr deploy/isso/isso.container /etc/containers/systemd/isso.container
 	systemctl daemon-reload
-	systemctl enable --now isso
 	systemctl restart isso
 	systemctl enable --now podman-auto-update.timer
 
