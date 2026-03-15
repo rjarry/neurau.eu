@@ -1,7 +1,7 @@
 baseURL = "https://neurau.eu/"
 languageCode = "fr"
 defaultContentLanguage = "fr"
-title = "Neurau"
+title = "neurau.eu"
 enableRobotsTXT = true
 [pagination]
   pagerSize = 9

@@ -1,6 +1,6 @@
 ---
 title: "Contact"
-description: "Contactez l'équipe Neurau"
+description: "Contactez l'équipe neurau.eu"
 ---
 
 Vous avez une question, une suggestion ou vous souhaitez collaborer avec nous ? Remplissez le formulaire ci-dessous et nous vous répondrons dans les meilleurs délais.

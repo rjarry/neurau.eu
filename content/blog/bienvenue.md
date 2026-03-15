@@ -1,7 +1,7 @@
 ---
-title: "Bienvenue sur Neurau"
+title: "Bienvenue sur neurau.eu"
 date: 2026-03-14
-description: "Premier article du blog Neurau, une communauté francophone dédiée à la psychologie moderne."
+description: "Premier article du blog neurau.eu, une communauté francophone dédiée à la psychologie moderne."
 categories:
   - "Actualités"
 tags:
@@ -9,9 +9,9 @@ tags:
   - "psychologie"
 ---
 
-Bienvenue sur le blog de Neurau, votre espace francophone dédié à la psychologie moderne.
+Bienvenue sur le blog de neurau.eu, votre espace francophone dédié à la psychologie moderne.
 
-Notre mission est de rassembler praticiens, chercheurs et passionnés autour des avancées en neurosciences et en psychologie. Que vous soyez en France, en Belgique, en Suisse ou au Québec, Neurau est votre point de rencontre.
+Notre mission est de rassembler praticiens, chercheurs et passionnés autour des avancées en neurosciences et en psychologie. Que vous soyez en France, en Belgique, en Suisse ou au Québec, neurau.eu est votre point de rencontre.
 
 ## Ce que vous trouverez ici
 
@@ -19,4 +19,4 @@ Des articles de fond sur les derniers travaux en psychologie cognitive, des reto
 
 ## Rejoignez-nous
 
-N'hésitez pas à nous contacter pour contribuer au blog ou proposer un sujet. La communauté Neurau se construit avec vous.
+N'hésitez pas à nous contacter pour contribuer au blog ou proposer un sujet. La communauté neurau.eu se construit avec vous.

@@ -1,6 +1,6 @@
 # neurau.eu
 
-Site web de la communauté francophone Neurau (psychologie moderne).
+Site web de la communauté francophone neurau.eu (psychologie moderne).
 Généré avec Hugo, éditable via Decap CMS, hébergé sur VPS.
 Commentaires via Isso.
 
@@ -45,7 +45,7 @@ IPv6) pointant `neurau.eu` et `comments.neurau.eu` vers l'IP du VPS.
 Créer une OAuth App dans GitHub (Settings > Developer settings >
 OAuth Apps) :
 
-- Application name : Neurau CMS
+- Application name : neurau.eu CMS
 - Homepage URL : https://neurau.eu
 - Authorization callback URL : https://neurau.eu/oauth/callback
 
