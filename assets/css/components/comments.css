@@ -90,9 +90,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #isso-thread .isso-auth-section .isso-input-wrapper {
+  display: block;
+  max-width: 100%;
   margin: 0;
 }
 
