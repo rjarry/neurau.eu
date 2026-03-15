@@ -41,7 +41,8 @@ deploy-isso: deploy/isso/secrets.cfg
 	chown -R isso:isso /srv/isso
 	ln -sfr deploy/isso/isso.container /etc/containers/systemd/isso.container
 	systemctl daemon-reload
-	systemctl start isso
+	systemctl enable --now isso
+	systemctl restart isso
 	systemctl enable --now podman-auto-update.timer
 
 deploy/cms/env:
@@ -56,6 +57,7 @@ deploy-cms: deploy/cms/neurau-cms deploy/cms/env
 	mkdir -p /var/www/neurau.eu
 	systemctl daemon-reload
 	systemctl enable --now neurau-cms
+	systemctl restart neurau-cms
 
 .PHONY: deploy-nginx
 deploy-nginx:
