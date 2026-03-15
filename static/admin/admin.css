@@ -1,0 +1,27 @@
+/* Override Decap CMS colors to match site theme */
+
+/* Top bar */
+[class*="AppHeader"] {
+  background-color: #373230 !important;
+}
+
+/* Primary buttons (save, publish) */
+[class*="ToolbarButton"]:not([class*="DeleteButton"]),
+button[class*="PublishButton"] {
+  background-color: #d25f50 !important;
+}
+[class*="ToolbarButton"]:not([class*="DeleteButton"]):hover,
+button[class*="PublishButton"]:hover {
+  background-color: #b2463a !important;
+}
+
+/* Links */
+a[class*="SidebarNavLink"][aria-current="true"],
+a[class*="SidebarNavLink"]:hover {
+  color: #d25f50 !important;
+}
+
+/* Editor toolbar active state */
+[class*="ToolbarToggle"][class*="active"] {
+  color: #d25f50 !important;
+}
