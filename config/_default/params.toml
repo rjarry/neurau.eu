@@ -1,6 +1,6 @@
 description = "Communauté francophone de psychologie moderne"
 tagline = "Explorer, comprendre, partager"
-isso = "https://comments.neurau.eu/"
+isso = "/.comments/"
 
 [contact]
   email = "contact@neurau.eu"

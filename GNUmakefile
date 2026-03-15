@@ -58,8 +58,8 @@ deploy-cms: deploy/cms/neurau-cms deploy/cms/env
 
 .PHONY: deploy-nginx
 deploy-nginx:
-	ln -sfr deploy/isso/nginx.conf /etc/nginx/sites-available/comments.neurau.eu
-	ln -sfr /etc/nginx/sites-available/comments.neurau.eu /etc/nginx/sites-enabled/
+	rm -f /etc/nginx/sites-enabled/comments.neurau.eu
+	rm -f /etc/nginx/sites-available/comments.neurau.eu
 	ln -sfr deploy/cms/nginx.conf /etc/nginx/sites-available/neurau.eu
 	ln -sfr /etc/nginx/sites-available/neurau.eu /etc/nginx/sites-enabled/
 	nginx -t
@@ -69,11 +69,9 @@ deploy-nginx:
 deploy-certbot:
 	apt-get install -y certbot
 	mkdir -p /var/www/acme
-	@for domain in comments.neurau.eu neurau.eu; do \
-		if [ ! -d /etc/letsencrypt/live/$$domain ]; then \
-			certbot certonly --webroot -w /var/www/acme -d $$domain; \
-		else \
-			echo "$$domain: certificate already exists"; \
-		fi; \
-	done
+	@if [ ! -d /etc/letsencrypt/live/neurau.eu ]; then \
+		certbot certonly --webroot -w /var/www/acme -d neurau.eu -d www.neurau.eu; \
+	else \
+		echo "neurau.eu: certificate already exists"; \
+	fi
 	systemctl enable --now certbot.timer
