@@ -36,8 +36,9 @@ deploy-isso: deploy/isso/secrets.cfg
 	grep -q isso /etc/subuid || usermod --add-subuids 100000-165535 --add-subgids 100000-165535 isso
 	loginctl enable-linger isso
 	mkdir -p /srv/isso/config /srv/isso/db
-	chown -R isso:isso /srv/isso
 	set -a && . $< && $(envsubst) < deploy/isso/isso.cfg > /srv/isso/config/isso.cfg
+	chmod 600 /srv/isso/config/isso.cfg
+	chown -R isso:isso /srv/isso
 	ln -sfr deploy/isso/isso.container /etc/containers/systemd/isso.container
 	systemctl daemon-reload
 	systemctl start isso
@@ -51,7 +52,7 @@ deploy/cms/env:
 deploy-cms: deploy/cms/neurau-cms deploy/cms/env
 	install -m 755 deploy/cms/neurau-cms /usr/local/bin/neurau-cms
 	install -m 600 deploy/cms/env /etc/neurau-cms.env
-	install -m 644 deploy/cms/neurau-cms.service /etc/systemd/system/neurau-cms.service
+	ln -sfr deploy/cms/neurau-cms.service /etc/systemd/system/neurau-cms.service
 	mkdir -p /var/www/neurau.eu
 	systemctl daemon-reload
 	systemctl enable --now neurau-cms
@@ -67,7 +68,6 @@ deploy-nginx:
 
 .PHONY: deploy-certbot
 deploy-certbot:
-	apt-get install -y certbot
 	mkdir -p /var/www/acme
 	@if [ ! -d /etc/letsencrypt/live/neurau.eu ]; then \
 		certbot certonly --webroot -w /var/www/acme -d neurau.eu -d www.neurau.eu; \
