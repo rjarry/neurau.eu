@@ -190,7 +190,7 @@ func oauthSuccess(w http.ResponseWriter, token string) {
 (function() {
   window.opener.postMessage(
     'authorization:github:success:{"token":"%s","provider":"github"}',
-    document.referrer
+    document.location.origin
   );
 })();
 </script></body></html>`, token)
@@ -203,7 +203,7 @@ func oauthError(w http.ResponseWriter, msg string) {
 (function() {
   window.opener.postMessage(
     'authorization:github:error:{"message":"%s"}',
-    document.referrer
+    document.location.origin
   );
 })();
 </script></body></html>`, msg)
