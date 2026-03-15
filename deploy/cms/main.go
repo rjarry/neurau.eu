@@ -190,15 +190,19 @@ func oauthSuccess(w http.ResponseWriter, token string) {
 <p>Authentification en cours...</p>
 <script>
 (function() {
-  if (window.opener) {
+  if (!window.opener) {
+    document.querySelector('p').textContent =
+      'Erreur : la fenetre parente est introuvable.';
+    return;
+  }
+  window.addEventListener("message", function(e) {
     window.opener.postMessage(
       'authorization:github:success:{"token":"%s","provider":"github"}',
-      document.location.origin
+      e.origin
     );
     window.close();
-  } else {
-    document.querySelector('p').textContent = 'Erreur : la fenetre parente est introuvable.';
-  }
+  });
+  window.opener.postMessage("authorizing:github", "*");
 })();
 </script></body></html>`, token)
 }
