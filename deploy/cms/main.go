@@ -186,12 +186,19 @@ func exchangeCode(code string) (string, error) {
 
 func oauthSuccess(w http.ResponseWriter, token string) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprintf(w, `<!DOCTYPE html><html><body><script>
+	fmt.Fprintf(w, `<!DOCTYPE html><html><body>
+<p>Authentification en cours...</p>
+<script>
 (function() {
-  window.opener.postMessage(
-    'authorization:github:success:{"token":"%s","provider":"github"}',
-    document.location.origin
-  );
+  if (window.opener) {
+    window.opener.postMessage(
+      'authorization:github:success:{"token":"%s","provider":"github"}',
+      document.location.origin
+    );
+    window.close();
+  } else {
+    document.querySelector('p').textContent = 'Erreur : la fenetre parente est introuvable.';
+  }
 })();
 </script></body></html>`, token)
 }
@@ -199,14 +206,18 @@ func oauthSuccess(w http.ResponseWriter, token string) {
 func oauthError(w http.ResponseWriter, msg string) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.WriteHeader(http.StatusBadRequest)
-	fmt.Fprintf(w, `<!DOCTYPE html><html><body><script>
+	fmt.Fprintf(w, `<!DOCTYPE html><html><body>
+<p>Erreur : %s</p>
+<script>
 (function() {
-  window.opener.postMessage(
-    'authorization:github:error:{"message":"%s"}',
-    document.location.origin
-  );
+  if (window.opener) {
+    window.opener.postMessage(
+      'authorization:github:error:{"message":"%s"}',
+      document.location.origin
+    );
+  }
 })();
-</script></body></html>`, msg)
+</script></body></html>`, msg, msg)
 }
 
 func handleWebhook(w http.ResponseWriter, r *http.Request) {
